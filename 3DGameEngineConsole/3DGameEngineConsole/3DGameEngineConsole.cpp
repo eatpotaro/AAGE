@@ -537,12 +537,13 @@ public:
                 TriViewed.Points[2] = Matrix_MultiplyVector(MatView, TriTransformed.Points[2]);
 
                 //clip viewed tanrgle against near plane, this could make two mroe traingles;
-                /*int nClippedTriangles = 0;
+                int nClippedTriangles = 0;
                 Triangle clipped[3];
+                clipped[0] = TriViewed;
                 nClippedTriangles = Vector_ClipAgainstPlane({ 0.0f, 0.0f, 0.1f }, { 0.0f, 0.0f, 1.0f }, TriViewed, clipped[0], clipped[1]);
-
+                
                 for (int n = 0; n < nClippedTriangles; n++)
-                {*/
+                {
                 //3D to 2D;
                 TriProjected.Points[0] = Matrix_MultiplyVector(ProjectionMatrix, TriViewed.Points[0]);
                 TriProjected.Points[1] = Matrix_MultiplyVector(ProjectionMatrix, TriViewed.Points[1]);
@@ -575,7 +576,7 @@ public:
                 TriProjected.Points[2].y *= 0.5 * (float)ScreenHeight();
 
                 VecTrianglesToRaster.push_back(TriProjected);
-                //}
+                }
             }
 
         }
